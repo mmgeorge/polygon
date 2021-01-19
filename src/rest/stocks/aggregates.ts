@@ -46,7 +46,7 @@ export interface IAggResponseRaw {
   adjusted: boolean;
   queryCount?: number;
   resultsCount?: number;
-  results: IAggV2Raw[];
+  results?: IAggV2Raw[];
 }
 export interface IAggResponseFormatted {
   ticker: string;
@@ -60,7 +60,7 @@ export const formatIAggResponseRaw = (
   raw: IAggResponseRaw
 ): IAggResponseFormatted => ({
   ...raw,
-  results: raw.results.map(formatIAggv2Raw)
+  results: (raw.results || []).map(formatIAggv2Raw)
 });
 
 export interface IAggregateQuery extends IPolygonQuery {
